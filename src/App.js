@@ -8,10 +8,10 @@ function App() {
   return (
     <>
       <TareaProvider>
-        <AppUI/>
+        <AppUI />
       </TareaProvider>
     </>
   );
 }
 
-export {App};
+export { App };

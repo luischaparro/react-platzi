@@ -6,6 +6,7 @@ import { TareasError } from './TareasError';
 import { TareasEmpty } from './TareasEmpty';
 import { TareaContext } from '../hooks/Context';
 import { Modal } from './Modal';
+import { FormularioTareas } from './FormularioTareas';
 
 const AppUI = () => {
     const {
@@ -20,46 +21,46 @@ const AppUI = () => {
         deleteTarea,
         openModal,
         setOpenModal,
-      } = React.useContext(TareaContext);
+    } = React.useContext(TareaContext);
 
-  return (
-    <>
-        <TareasContainer 
-            total={tareasTotal} 
-            completed={tareasCompletadas} 
-            inputValue={inputValue} 
-            setInputValue={setInputValue}
-            openModal={openModal}
-            setOpenModal={setOpenModal}
-        >
-            {loading && (
-            <>
-                <TareasLoading/>
-                <TareasLoading/>
-                <TareasLoading/>
-            </>
+    return (
+        <>
+            <TareasContainer
+                total={tareasTotal}
+                completed={tareasCompletadas}
+                inputValue={inputValue}
+                setInputValue={setInputValue}
+                openModal={openModal}
+                setOpenModal={setOpenModal}
+            >
+                {loading && (
+                    <>
+                        <TareasLoading />
+                        <TareasLoading />
+                        <TareasLoading />
+                    </>
+                )}
+                {error && <TareasError />}
+                {(!loading && tareasEncontradas.length === 0) && <TareasEmpty />}
+
+                {tareasEncontradas.map(dato => (
+                    <Tarea
+                        key={dato.text}
+                        text={dato.text}
+                        completed={dato.completed}
+                        onComplete={() => completeTarea(dato.text)}
+                        onDelete={() => deleteTarea(dato.text)}
+                    />
+                ))}
+            </TareasContainer>
+
+            {openModal && (
+                <Modal>
+                    <FormularioTareas />
+                </Modal>
             )}
-            {error && <TareasError/>}
-            {(!loading && tareasEncontradas.length === 0) && <TareasEmpty/>}
-
-            {tareasEncontradas.map(dato => (
-            <Tarea 
-                key={dato.text} 
-                text={dato.text}
-                completed={dato.completed}
-                onComplete={() => completeTarea(dato.text)}
-                onDelete={() => deleteTarea(dato.text)}
-            />
-            ))}
-        </TareasContainer>
-
-        {openModal && (
-            <Modal>
-                Modal
-            </Modal>
-        )}
-    </>
-  )
+        </>
+    )
 }
 
-export {AppUI};
+export { AppUI };

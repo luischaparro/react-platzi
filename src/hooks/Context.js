@@ -5,7 +5,7 @@ const TareaContext = React.createContext();
 
 function TareaProvider({ children }) {
     const {
-        item: tareas, 
+        item: tareas,
         saveItem: saveTareas,
         loading,
         error,
@@ -13,18 +13,18 @@ function TareaProvider({ children }) {
     const [inputValue, setInputValue] = React.useState("");
 
     const [openModal, setOpenModal] = React.useState(false);
-    
+
     const tareasCompletadas = tareas.filter(
         (tarea) => !!tarea.completed)
         .length;
     const tareasTotal = tareas.length;
-    
+
     const tareasEncontradas = tareas.filter(
         (tarea) => {
             return tarea.text.toLowerCase().includes(inputValue.toLowerCase());
         }
     );
-    
+
     const completeTarea = (text) => {
         const newTareas = [...tareas];
         const tareaIndex = newTareas.findIndex(
@@ -33,13 +33,22 @@ function TareaProvider({ children }) {
         newTareas[tareaIndex].completed = true;
         saveTareas(newTareas);
     };
-    
+
     const deleteTarea = (text) => {
         const newTareas = [...tareas];
         const tareaIndex = newTareas.findIndex(
             (tarea => tarea.text === text)
         );
         newTareas.splice(tareaIndex, 1);
+        saveTareas(newTareas);
+    };
+
+    const addTarea = (text) => {
+        const newTareas = [...tareas];
+        newTareas.push({
+            text,
+            completed: false,
+        });
         saveTareas(newTareas);
     };
 
@@ -56,10 +65,11 @@ function TareaProvider({ children }) {
             deleteTarea,
             openModal,
             setOpenModal,
+            addTarea,
         }}>
             {children}
         </TareaContext.Provider>
     );
 }
 
-export {TareaContext, TareaProvider};
+export { TareaContext, TareaProvider };
