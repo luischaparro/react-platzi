@@ -1,0 +1,124 @@
+body {
+  background-color: antiquewhite;
+}
+
+.Titulo {
+  font-size: 24px;
+  text-align: center;
+  margin: 0;
+  padding: 40px;
+  font-weight: normal;
+  font-size: clamp(2rem, 6vw, 15rem);
+}
+
+.Titulo span {
+  font-weight: 900;
+}
+
+.Icon-check--active {
+  color: green;
+}
+
+.Tarea-p-completed {
+  text-decoration: line-through;
+}
+
+.Tarea-x:hover {
+  color: red;
+}
+
+.Tarea-li {
+  display: flex;
+  font-size: 20px;
+  justify-content: space-between;
+  background-color: aliceblue;
+  padding-left: 40px;
+  padding-right: 40px;
+  margin-bottom: 10px;
+  width: 70vw;
+  border-radius: 40px;
+  height: 10vh;
+}
+
+.Tarea-loading {
+  background: linear-gradient(90deg, rgba(250, 250, 250, 1), rgba(200, 199, 199));
+  background-size: 400% 400%;
+  animation: loadingAnimation 3s ease-in-out infinite;
+}
+
+.Tarea-loading-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+}
+
+.Tarea-li span {
+  width: 40px;
+  font-size: clamp(2rem, 4vw, 15rem);
+  font-weight: 900;
+  align-self: center;
+  text-align: center;
+  background-color: rgba(101, 250, 242, 0.2);
+  border-radius: 100%;
+}
+
+.Tarea-p {
+  align-self: center;
+  text-align: center;
+}
+
+.Tarea-ul {
+  position: relative;
+  align-self: center;
+  padding: 0;
+}
+
+.BotonAgregar {
+  padding: 20px;
+  font-weight: 900;
+  font-size: 40px;
+  border-radius: 100%;
+  width: 90px;
+  position: relative;
+  align-self: flex-end;
+  z-index: 1;
+}
+
+.Input-tarea {
+  padding: 10px;
+  margin-left: 20%;
+  margin-right: 20%;
+  text-align: center;
+  border-radius: 20px;
+  font-size: clamp(1rem, 3vw, 15rem);
+}
+
+.contenedor {
+  display: flex;
+  flex-direction: column;
+}
+
+.ModalBackground {
+  background-color: rgba(32,35,41,.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+@keyframes loadingAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
